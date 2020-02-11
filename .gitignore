@@ -1,0 +1,18 @@
+# A few hidden directories for user customizations and Python bytecode
+.idea
+.terraform
+__pycache__
+images/
+
+# Secret variables
+**/secrets.tfvars
+
+# TF State
+**/terraform.tfstate
+**/terraform.tfstate.backup
+
+# Ansible inventory
+inventory
+
+# Ansible playbook retries
+*.retry

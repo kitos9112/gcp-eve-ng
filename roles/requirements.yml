@@ -1,0 +1,4 @@
+# Install Terraform role for installing it locally
+- src: https://github.com/bennojoy/nginx
+  version: master
+  name: nginx_rol
