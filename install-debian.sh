@@ -9,14 +9,14 @@ PYTHON_VERSION="3.8.1"
 #### -----------------------
 
 # 1. Install all prereqs packages for PyEnv
-sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
+sudo apt-get install -y curl make build-essential libssl-dev zlib1g-dev libbz2-dev \
                         libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
                         xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
 
 # 2 Install PyEnv itself and all associated plugins if required. Otherwise, update it!
-pyenv update || bash ./common/pyenv-installer.sh; source $SHELL_PROFILE_FILE
+pyenv update || source ./common/pyenv-installer.sh; source $SHELL_PROFILE_FILE
 git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
-echo 'eval "$(pyenv virtualenv-init -)"' >> SHELL_PROFILE_FILE && source $SHELL_PROFILE_FILE
+echo 'eval "$(pyenv virtualenv-init -)"' >> $SHELL_PROFILE_FILE && source $SHELL_PROFILE_FILE
 
 # 3. Do we need to install requested Python version?
 pyenv local $PYTHON_VERSION || pyenv install $PYTHON_VERSION; pyenv local $PYTHON_VERSION
