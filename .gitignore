@@ -1,6 +1,7 @@
 # A few hidden directories for user customizations and Python bytecode
 .idea
 .terraform
+.python-version
 __pycache__
 images/
 
