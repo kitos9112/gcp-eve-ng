@@ -1,0 +1,5 @@
+plugin: gcp_compute
+projects:
+  - MY_GCP_PROJECT
+auth_kind: serviceaccount
+service_account_file: /home/alexstephen/my_account.json

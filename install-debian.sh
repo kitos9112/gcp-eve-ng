@@ -14,9 +14,13 @@ sudo apt-get install -y curl make build-essential libssl-dev zlib1g-dev libbz2-d
                         xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
 
 # 2 Install PyEnv itself and all associated plugins if required. Otherwise, update it!
-pyenv update || source ./common/pyenv-installer.sh; source $SHELL_PROFILE_FILE
-git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
-echo 'eval "$(pyenv virtualenv-init -)"' >> $SHELL_PROFILE_FILE && source $SHELL_PROFILE_FILE
+pyenv update || (source ./common/pyenv-installer.sh; source $SHELL_PROFILE_FILE)
+
+pyenv virtualenvs || (rm -rf $(pyenv root)/plugins/pyenv-virtualenv; 
+                        git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv; 
+                        echo 'eval "$(pyenv virtualenv-init -)"' >> $SHELL_PROFILE_FILE && source $SHELL_PROFILE_FILE)
 
 # 3. Do we need to install requested Python version?
-pyenv local $PYTHON_VERSION || pyenv install $PYTHON_VERSION; pyenv local $PYTHON_VERSION
+pyenv local $PYTHON_VERSION || (pyenv install $PYTHON_VERSION; pyenv local $PYTHON_VERSION)
+
+pip install ansible
